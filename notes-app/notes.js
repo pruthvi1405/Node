@@ -1,9 +1,12 @@
 const fs=require('fs')
+const chalk=require('chalk')
 const addNote=(title,body)=>{
     const notes=loadNotes()
     const duplicate=notes.filter((note)=>{
         return title==note.title
     })
+
+    debugger
 
     if (duplicate.length===0){
     
@@ -12,15 +15,18 @@ const addNote=(title,body)=>{
         body:body
     })
     saveNotes(notes)
+    console.log(chalk.green.inverse("Note added"))
 }
 else{
-    console.log("duplicate notes cannot be added")
+    console.log(chalk.red.inverse("duplicate notes cannot be added"))
 }
 
 }
 const getNotes=()=>{
     const notes=loadNotes()
-    console.log(notes)
+    notes.forEach((note) => {
+        console.log(note.title)
+    });
 }
 
 const saveNotes=(notes)=>{
@@ -53,4 +59,17 @@ const removeNote=(title)=>{
     saveNotes(updatedNotes)
 }
 
-module.exports={addNote,getNotes,removeNote}
+const readNote=(title)=>{
+    const notes=loadNotes();
+    const note=notes.find((note)=>{
+        return note.title===title;
+    })
+    if(note){
+        console.log(chalk.inverse(note.title))
+        console.log(note.body)
+    }else{
+        console.log(chalk.inverse.red("No note found"))
+    }
+}
+
+module.exports={addNote,getNotes,removeNote,readNote}

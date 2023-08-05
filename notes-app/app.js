@@ -1,3 +1,4 @@
+const { type } = require('os')
 const { argv } = require('process')
 const yargs=require('yargs')
 const notes=require('./notes.js')
@@ -19,7 +20,7 @@ yargs.command({
             type:'string'
         }
     },
-    handler: function (argv){
+    handler (argv){
         notes.addNote(argv.title,argv.body)
     }
 })
@@ -35,7 +36,7 @@ yargs.command({
             type:"string"
         }
     },
-    handler:function (argv){
+    handler (argv){
         notes.removeNote(argv.title)
     }
 })
@@ -43,7 +44,7 @@ yargs.command({
 yargs.command({
     command:"list",
     describe:"Describe a note",
-    handler:()=>{
+    handler(){
         notes.getNotes()
     }
 })
@@ -51,8 +52,15 @@ yargs.command({
 yargs.command({
     command:"read",
     describe:"Reads a note",
-    handler:(argv)=>{
-        console.log("Reading a Note!")
+    builder:{
+        title:{
+            describe:"Title of the Note",
+            demandOption:true,
+            type:'string'
+        }
+    },
+    handler(argv){
+        notes.readNote(argv.title)
     }
 })
 
