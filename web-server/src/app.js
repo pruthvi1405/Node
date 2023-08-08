@@ -46,7 +46,7 @@ app.get("/weather",(req,res)=>{
         })
     }
 
-   geocode(req.query.address,(err,{latitude,longitude,location})=>{
+   geocode(req.query.address,(err,{latitude,longitude,location}={})=>{
         if(err){
             return  res.send({
                 err:"Cannot connect to geocode api"

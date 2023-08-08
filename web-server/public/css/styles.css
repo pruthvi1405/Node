@@ -23,6 +23,7 @@ footer{
 
 header{
     margin-top: 16px; 
+    padding-bottom: 16px;
     margin-bottom: 16px;
 }
 
@@ -40,4 +41,18 @@ header a{
 
 .potrait{
     width: 250px;
+}
+
+input{
+ border: 1px solid #cccccc;
+ padding: 8px;
+}
+
+button{
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: #eeeeee;
+    padding: 8px;
+    
 }
