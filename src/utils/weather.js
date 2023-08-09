@@ -10,7 +10,7 @@ const weather=(latitude,longitude,callback)=>{
             callback("no response from the weather api",undefined);
         }
         else{
-            callback(undefined,body.daily.data[0].summary+ "("+body.current.weather_descriptions[0]+"). The temperature is "+body.current.temperature+" degree Celcius")
+            callback(undefined,body.current.weather_descriptions[0]+". It is currently"+body.current.temperature+" degree. It feels like "+body.current.feelslike+ " degrees")
         }
     })
 
