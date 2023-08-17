@@ -7,13 +7,14 @@ const sharp=require("sharp")
 
 
 router.post('/users',async (req,res)=>{
-    const user= new User(req.body)
+    const user=await new User(req.body)
     try{
         await user.save()
         const token=await user.generateAuthtoken()
         res.status(201).send({user,token})
     }
     catch(e){
+        console.log(e);
         res.status(400).send(e)
     }
 

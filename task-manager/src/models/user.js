@@ -91,7 +91,7 @@ userSchema.methods.toJSON=function(){
 
 userSchema.methods.generateAuthtoken=async function() {
     const user=this
-    const token= jwt.sign({_id:user._id.toString()},"thisismyexpresstutorial")
+    const token=jwt.sign({_id:user._id.toString()},token,process.env.JWT)
     user.tokens=user.tokens.concat({token})
     await user.save()
     return token
